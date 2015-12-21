@@ -1,9 +1,10 @@
 {-# LANGUAGE OverloadedStrings #-}
-module UTPC where
+module UTPC (runApp, app) where
 
 import Control.Monad.IO.Class
 
 import Network.HTTP.Types.Status
+import Network.Wai (Application)
 import Network.Wai.Middleware.RequestLogger
 import Hackerrank
 import Web.Scotty
@@ -29,7 +30,15 @@ routes = do
   get  "/submit"    (text "submitted")
   post "/submit"    submit
 
-main :: IO ()
-main = do
+app' :: ScottyM ()
+app' = do
+  middleware logStdoutDev
+  routes
+
+app :: IO Application
+app = scottyApp app'
+
+runApp :: IO ()
+runApp = do
   putStrLn "Starting Server"
-  scotty 3000 $ middleware logStdoutDev >> routes
+  scotty 3000 app'

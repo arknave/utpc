@@ -12,10 +12,9 @@ category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
 
-executable utpc-exe
+library
   hs-source-dirs:      src
-  main-is:             UTPC.hs
-  default-language:    Haskell2010
+  exposed-modules:     UTPC, Hackerrank
   build-depends:       aeson,
                        base >= 4.7 && < 5,
                        containers,
@@ -24,5 +23,28 @@ executable utpc-exe
                        lens-aeson,
                        scotty,
                        transformers,
+                       wai,
                        wai-extra,
                        wreq
+
+executable utpc-exe
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
+  build-depends:       base,
+                       utpc
+  default-language:    Haskell2010
+
+test-suite utpc-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , utpc
+                     , hspec
+                     , hspec-wai
+                     , hspec-wai-json
+                     , aeson
+  ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
