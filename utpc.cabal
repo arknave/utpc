@@ -16,6 +16,13 @@ executable utpc
   hs-source-dirs:      src
   main-is:             UTPC.hs
   default-language:    Haskell2010
-  build-depends:       base >= 4.7 && < 5,
-                       aeson,
-                       scotty
+  build-depends:       aeson,
+                       base >= 4.7 && < 5,
+                       containers,
+                       http-types,
+                       lens,
+                       lens-aeson,
+                       scotty,
+                       transformers,
+                       wai-extra,
+                       wreq
