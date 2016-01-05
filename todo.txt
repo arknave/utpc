@@ -1,0 +1,2 @@
+Figure out how to test when hackerrank is down
+Better error messages

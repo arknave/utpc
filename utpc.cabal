@@ -15,24 +15,26 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   exposed-modules:     UTPC, Hackerrank
-  build-depends:       aeson,
-                       base >= 4.7 && < 5,
-                       containers,
-                       http-types,
-                       lens,
-                       lens-aeson,
-                       scotty,
-                       transformers,
-                       wai,
-                       wai-extra,
-                       wreq
+  build-depends:       aeson
+                     , base >= 4.7 && < 5
+                     , containers
+                     , http-types
+                     , lens
+                     , lens-aeson
+                     , scotty
+                     , text
+                     , transformers
+                     , wai
+                     , wai-extra
+                     , wai-middleware-static
+                     , wreq
 
 executable utpc-exe
   hs-source-dirs:      app
   main-is:             Main.hs
   ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
-  build-depends:       base,
-                       utpc
+  build-depends:       base
+                     , utpc
   default-language:    Haskell2010
 
 test-suite utpc-test

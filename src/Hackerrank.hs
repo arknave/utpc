@@ -16,4 +16,5 @@ languagesUrl = "http://api.hackerrank.com/checker/languages.json"
 languages :: IO (Maybe Value)
 languages = do
   r <- asValue =<< get languagesUrl
-  return (r ^? responseBody . key "languages" . key "names")
+  return (r ^? responseBody . key "languages")
+
